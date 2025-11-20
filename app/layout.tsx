@@ -19,11 +19,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <h1 className="text-2xl font-bold mb-4">Abir Ahmed</h1>
 
             <Image
-              src="/profile_u.png"
+              src="/profile.png"
               alt="Profile"
               width={120}
               height={120}
-              className="square-xl object-cover mb-4"
+              className="square-xl bg-gray-100 object-cover mb-4"
             />
 
             <h2 className="text-lg font-semibold">Researcher & Developer</h2>
