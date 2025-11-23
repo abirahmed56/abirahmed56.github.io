@@ -19,13 +19,24 @@ const projects: Project[] = [
     title: "Efficient Zero-Shot Voice Cloning for Bengali Speech Synthesis",
     authors: "Abir Ahmed, Prapti Roy, Durjoy Chandra Paul, and M. Shahidur Rahman",
     bullets: [
-      "A versatile audio super-resolution model that upsamples music, speech, and sound effects from 4–32kHz to 44.1kHz.",
-      "Combines text and spectral roll-off embeddings for robust and semantically aligned reconstruction.",
-      "Based on a DiT backbone trained with a flow matching objective.",
-      "Achieves state-of-the-art performance in both objective and subjective evaluations.",
+      "A text-to-speech model with zero-shot voice-cloning capability for Bangla.",
+      "Introduces an ensemble-based approach to achieve state-of-the-art voice cloning performance using limited data (27 hours, 13 speakers).",
+      "Achieves performance comparable to state-of-the-art models trained on significantly larger and more diverse speaker datasets.",
     ],
     link: "/zs-vcl",
-    imageID: "XXXXX",
+    imageID: "zs-vcl.jpeg",
+  },
+  {
+    section: "research",
+    title: "Percept-Diff: Innovations in Stable Diffusion for High-Fidelity IHC Image Generation in HER2 Breast Cancer Incorporating Perceptual Loss",
+    authors: "Md Naimur Asif Borno, Md Tanvir Raihan, Abir Ahmed, Md Sakib Hossain Shovon, Jungpil Shin, MF Mridha",
+    bullets: [
+      "A text-to-speech model with zero-shot voice-cloning capability for Bangla.",
+      "Introduces an ensemble-based approach to achieve state-of-the-art voice cloning performance using limited data (27 hours, 13 speakers).",
+      "Achieves performance comparable to state-of-the-art models trained on significantly larger and more diverse speaker datasets.",
+    ],
+    link: "/Percept-Diff",
+    imageID: "stable-diffusion/sdm-proposed.png",
   },
 
   // {
@@ -118,7 +129,7 @@ export default function ProjectsPage() {
           {p.imageID && (
             <div className="w-full rounded-lg overflow-hidden border mt-3">
               <Image
-                src="/zs-vcl.jpeg" // replace with your actual diagram path
+                src= {`/${p.imageID}`}// replace with your actual diagram path
                 width={900}
                 height={600}
                 alt="Model Diagram"
