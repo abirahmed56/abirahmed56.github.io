@@ -15,15 +15,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-gray-50">
         <div className="flex min-h-screen">
           {/* ---- SIDEBAR ---- */}
-          <aside className="w-64 bg-white shadow-md p-6 hidden md:flex flex-col items-start gap-4">
-            <h1 className="text-2xl font-bold mb-4">Abir Ahmed</h1>
+          <aside className="w-64 bg-white shadow-md p-6 hidden md:flex flex-col items-start">
+            <h1 className="text-2xl text-gray-500 font-bold">Abir Ahmed</h1>
 
             <Image
               src="/profile.png"
               alt="Profile"
               width={120}
               height={120}
-              className="square-xl bg-gray-100 object-cover mb-4"
+              className="w-[120px] h-[120px] rounded-full bg-gray-100 object-cover"
             />
 
             <h2 className="text-lg font-semibold">Researcher & Developer</h2>

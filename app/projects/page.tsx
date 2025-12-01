@@ -23,7 +23,7 @@ const projects: Project[] = [
       "Introduces an ensemble-based approach to achieve state-of-the-art voice cloning performance using limited data (27 hours, 13 speakers).",
       "Achieves performance comparable to state-of-the-art models trained on significantly larger and more diverse speaker datasets.",
     ],
-    link: "/zs-vcl",
+    link: "/projects/zs-vcl",
     imageID: "zs-vcl.jpeg",
   },
   {
@@ -35,7 +35,7 @@ const projects: Project[] = [
       "Introduces an ensemble-based approach to achieve state-of-the-art voice cloning performance using limited data (27 hours, 13 speakers).",
       "Achieves performance comparable to state-of-the-art models trained on significantly larger and more diverse speaker datasets.",
     ],
-    link: "/Percept-Diff",
+    link: "/projects/Percept-Diff",
     imageID: "stable-diffusion/sdm-proposed.png",
   },
 
