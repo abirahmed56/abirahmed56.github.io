@@ -9,7 +9,47 @@ interface BlogItem {
   description: string;
   link: string;
 }
-// https://www.linkedin.com/pulse/practical-guide-beginning-ml-research-abir-ahmed-nftcc
+
+const SectionHeader = ({ title }: { title: string }) => (
+  <h2 className="text-xl font-semibold border-b pb-2 mb-6">{title}</h2>
+);
+
+const BlogCard = ({ blog, index, isOpen, onToggle }: any) => (
+  <div className="border rounded-xl overflow-hidden">
+    <button
+      onClick={() => onToggle(index)}
+      className="w-full p-4 flex justify-between items-center bg-gray-100 hover:bg-gray-200"
+    >
+      <span className="text-lg font-medium">{blog.title}</span>
+      {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+    </button>
+
+    {isOpen && (
+      <div className="p-5 space-y-3 bg-white">
+        <div className="flex gap-2 flex-wrap">
+          {blog.tags.map((tag: string, i: number) => (
+            <span
+              key={i}
+              className="text-sm bg-gray-200 px-2 py-0.5 rounded-full"
+            >
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <p className="text-gray-700 whitespace-pre-line">{blog.description}</p>
+
+        <Link
+          href={blog.link}
+          target="_blank"
+          className="inline-block mt-2 text-blue-600 font-medium hover:underline"
+        >
+          Read the blog →
+        </Link>
+      </div>
+    )}
+  </div>
+);
 
 export default function Page() {
   const ml_blogs: BlogItem[] = [
@@ -21,6 +61,7 @@ export default function Page() {
       link: "https://www.linkedin.com/pulse/practical-guide-beginning-ml-research-abir-ahmed-nftcc",
     },
   ];
+
   const web_blogs: BlogItem[] = [
     {
       title: "React State Management",
@@ -38,94 +79,27 @@ export default function Page() {
     },
   ];
 
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openML, setOpenML] = useState<number | null>(null);
+  const [openWeb, setOpenWeb] = useState<number | null>(null);
 
-  const toggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggleML = (index: number) => setOpenML(openML === index ? null : index);
+  const toggleWeb = (index: number) => setOpenWeb(openWeb === index ? null : index);
 
   return (
-    <div className="p-6 max-w-3xl mx-auto space-y-6">
-      <h2 className="text-xl font-semibold border-b pb-2 mb-6">Artificial Intelligence</h2>
+    <div className="p-6 max-w-3xl mx-auto space-y-10">
+      <SectionHeader title="Artificial Intelligence" />
+      <div className="space-y-4">
+        {ml_blogs.map((blog, index) => (
+          <BlogCard key={index} blog={blog} index={index} isOpen={openML === index} onToggle={toggleML} />
+        ))}
+      </div>
 
-      {ml_blogs.map((blog, index) => (
-        <div key={index} className="border rounded-xl overflow-hidden">
-          {/* Title Row */}
-          <button
-            onClick={() => toggle(index)}
-            className="w-full p-4 flex justify-between items-center bg-gray-100 hover:bg-gray-200"
-          >
-            <span className="text-lg font-medium">{blog.title}</span>
-            {openIndex === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-          </button>
-
-          {/* Expanded Content */}
-          {openIndex === index && (
-            <div className="p-5 space-y-3 bg-white">
-              <div className="flex gap-2 flex-wrap">
-                {blog.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="text-sm bg-gray-200 px-2 py-0.5 rounded-full"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-
-              <p className="text-gray-700 whitespace-pre-line">{blog.description}</p>
-
-              <Link
-                href={blog.link}
-                target="_blank"
-                className="inline-block mt-2 text-blue-600 font-medium hover:underline"
-              >
-                Read the blog →
-              </Link>
-            </div>
-          )}
-        </div>
-      ))}
-      <h2 className="text-xl font-semibold border-b pb-2 mb-6">Web Development</h2>
-
-      {web_blogs.map((blog, index) => (
-        <div key={index} className="border rounded-xl overflow-hidden">
-          {/* Title Row */}
-          <button
-            onClick={() => toggle(index)}
-            className="w-full p-4 flex justify-between items-center bg-gray-100 hover:bg-gray-200"
-          >
-            <span className="text-lg font-medium">{blog.title}</span>
-            {openIndex === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-          </button>
-
-          {/* Expanded Content */}
-          {openIndex === index && (
-            <div className="p-5 space-y-3 bg-white">
-              <div className="flex gap-2 flex-wrap">
-                {blog.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="text-sm bg-gray-200 px-2 py-0.5 rounded-full"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-
-              <p className="text-gray-700 whitespace-pre-line">{blog.description}</p>
-
-              <Link
-                href={blog.link}
-                target="_blank"
-                className="inline-block mt-2 text-blue-600 font-medium hover:underline"
-              >
-                Read the blog →
-              </Link>
-            </div>
-          )}
-        </div>
-      ))}
+      <SectionHeader title="Web Development" />
+      <div className="space-y-4">
+        {web_blogs.map((blog, index) => (
+          <BlogCard key={index} blog={blog} index={index} isOpen={openWeb === index} onToggle={toggleWeb} />
+        ))}
+      </div>
     </div>
   );
 }
