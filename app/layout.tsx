@@ -15,10 +15,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="bg-gray-50 text-gray-800 font-sans">
         <div className="flex min-h-screen">
-          {/* ---- DESKTOP SIDEBAR ---- */}
-          <aside className="w-72 bg-white shadow-xl p-6 hidden md:flex flex-col space-y-6">
+
+          {/* ---- DESKTOP SIDEBAR (Sticky) ---- */}
+          <aside
+            className="
+              w-72 bg-gray-50 shadow-xl p-6 hidden md:flex flex-col space-y-6
+              sticky top-0 h-screen overflow-y-auto
+            "
+          >
             {/* Profile */}
-            <div className="w-36 h-36 relative rounded-full overflow-hidden border-4 border-gray-300 shadow-lg mb-4">
+            <div className="w-36 h-36 relative rounded-full overflow-hidden border-4 bg-gray-400 border-gray-300 shadow-lg mb-4">
               <Image src="/profile.png" alt="Profile" fill className="object-cover" />
             </div>
 
@@ -31,19 +37,34 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <p className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors">
                 <FaEnvelope /> abirahmedsohan6@gmail.com
               </p>
-              <Link href="https://scholar.google.com/citations?user=QR5DvcIAAAAJ&hl=en" className="flex items-center gap-2 text-blue-600 hover:underline">
+              <Link
+                href="https://scholar.google.com/citations?user=QR5DvcIAAAAJ&hl=en"
+                className="flex items-center gap-2 text-blue-600 hover:underline"
+              >
                 <FaGoogle /> Google Scholar
               </Link>
-              <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
+              <Link
+                href="#"
+                className="flex items-center gap-2 text-blue-600 hover:underline"
+              >
                 <FaTwitter /> Twitter
               </Link>
-              <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
+              <Link
+                href="https://www.linkedin.com/in/abirahmed6/"
+                className="flex items-center gap-2 text-blue-600 hover:underline"
+              >
                 <FaLinkedin /> LinkedIn
               </Link>
-              <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
+              <Link
+                href="https://github.com/abirahmed56"
+                className="flex items-center gap-2 text-blue-600 hover:underline"
+              >
                 <FaGithub /> GitHub
               </Link>
-              <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
+              <Link
+                href="#"
+                className="flex items-center gap-2 text-blue-600 hover:underline"
+              >
                 <FaYoutube /> YouTube
               </Link>
             </div>
@@ -53,12 +74,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <MobileSidebar />
 
           {/* ---- MAIN CONTENT ---- */}
-          <main className="flex-1 p-6 md:p-12 bg-gray-50">
+          <main className="flex-1 p-6 md:p-12 bg-white">
             <Navbar />
             <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-xl p-8">
               {children}
             </div>
           </main>
+
         </div>
       </body>
     </html>

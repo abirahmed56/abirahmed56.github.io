@@ -3,32 +3,34 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaGoogle, FaTwitter, FaLinkedin, FaGithub, FaYoutube, FaEnvelope, FaBars, FaTimes } from "react-icons/fa";
+import { FaGoogle, FaTwitter, FaLinkedin, FaGithub, FaYoutube, FaEnvelope, FaTimes } from "react-icons/fa";
 
 export default function MobileSidebar() {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {/* Toggle Button (only when sidebar is closed) */}
-      {!open && (
-        <div className="md:hidden absolute top-4 left-4 z-50">
-          <button
-            onClick={() => setOpen(true)}
-            className="text-gray-800 p-2 rounded-md bg-white shadow-lg focus:outline-none"
-          >
-            <FaBars size={24} />
-          </button>
+      {/* Drawer Handle (peeks from left) */}
+      <div
+        className={`md:hidden fixed top-1/2 left-0 z-50 transform -translate-y-1/2 transition-all duration-300`}
+      >
+        <div
+          className={`w-6 h-20 bg-gray-600 rounded-r-lg shadow-lg flex items-center justify-center cursor-pointer
+            ${open ? "translate-x-72" : "translate-x-0"}
+          `}
+          onClick={() => setOpen(!open)}
+        >
+          <span className="text-white text-lg font-bold">{open ? "✕" : "☰"}</span>
         </div>
-      )}
+      </div>
 
       {/* Sidebar Drawer */}
       <aside
-        className={`fixed top-0 left-0 h-full w-72 bg-white shadow-xl p-6 transform transition-transform duration-300 z-40 md:hidden ${
-          open ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-72 bg-gray-50 shadow-xl p-6 transform transition-transform duration-300 z-40 md:hidden
+          ${open ? "translate-x-0" : "-translate-x-full"}
+        `}
       >
-        {/* Close Button inside sidebar */}
+        {/* Close Button */}
         <div className="absolute top-4 right-4">
           <button
             onClick={() => setOpen(false)}
@@ -58,10 +60,10 @@ export default function MobileSidebar() {
           <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
             <FaTwitter /> Twitter
           </Link>
-          <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
+          <Link href="https://www.linkedin.com/in/abirahmed6/" className="flex items-center gap-2 text-blue-600 hover:underline">
             <FaLinkedin /> LinkedIn
           </Link>
-          <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
+          <Link href="https://github.com/abirahmed56" className="flex items-center gap-2 text-blue-600 hover:underline">
             <FaGithub /> GitHub
           </Link>
           <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">

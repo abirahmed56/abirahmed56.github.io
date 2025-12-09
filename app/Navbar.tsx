@@ -12,8 +12,8 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/projects", label: "Publication" },
     { href: "/researches", label: "Research" },
+    { href: "/projects", label: "Projects" },
     { href: "/blogs", label: "Blog" },
   ];
 
@@ -38,7 +38,7 @@ export default function Navbar() {
   const isDropdownActive = dropdownLinks.some((d) => pathname?.startsWith(d.href));
 
   return (
-    <nav className="flex justify-center gap-8 py-1 text-lg font-medium bg-gray shadow-sm rounded-xl mx-auto w-fit px-10 mt-4 relative">
+    <nav className="flex justify-center gap-8 py-3 text-lg sticky top-0 font-medium bg-gray bg-gray-50 rounded-xl mx-auto w-fit px-60 mt-4 relative">
       {/* Main Navigation */}
       {navLinks.map((link) => (
         <Link
