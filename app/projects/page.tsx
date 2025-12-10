@@ -20,17 +20,82 @@ interface Research {
 
 const researches: Research[] = [
   {
-    section: "Academic",
-    title: "Shopap: Using Monorepo and Next.js",
-    authors: "Abir Ahmed, Sonjoy Saha",
+    section: "Personal",
+    title: "Employee Oversight",
+    authors: "",
     bullets: [
-      "DCT-GAN improves GAN training by maintaining balanced diversity using a simple feature-based controller",
-      "Uses DINOv2 features to prevent mode collapse without adding extra networks",
-      "Produces fast, high-quality, and diverse MRI images from limited data",
+      "Developed a Next.js-based system to manage employee tasks, attendance, and performance tracking.",
+      "Implemented interactive dashboards and automated reports for monitoring productivity and efficiency",
+      "Designed modular frontend and backend structure for scalable record handling and workflow management.",
     ],
-    link: "/researches/dct-gan",
-    imageID: "datc.png",
-    imageD: "Overall workflow of DCT-GAN",
+    link: "/projects/employee-oversight",
+    imageID: "",
+    imageD: "Sample analysis output",
+  },
+  {
+    section: "Academic",
+    title: "Result-Processing-System",
+    authors: "",
+    bullets: [
+      "Developed a comprehensive web application to automate university result processing.",
+      "Did proper requirement analysis and design relational database using MySQL.",
+      "Used ExpressJS as backend and React as Frontend to develop this application.",
+    ],
+    link: "/projects/result-processing",
+    imageID: "",
+    imageD: "Sample analysis output",
+  },
+  {
+    section: "Academic",
+    title: "Planet-RTS-137",
+    authors: "",
+    bullets: [
+      "Developed a 2D Unity platformer with player movement, shooting, and collision mechanics.",
+      "Designed 3 levels with enemies, obstacles, checkpoints, and collectible coins.",
+      "Implemented gameplay logic using C# scripts for AI, scoring, and level progression.",
+    ],
+    link: "/projects/planet-rts",
+    imageID: "",
+    imageD: "Sample analysis output",
+  },
+  {
+    section: "Industry",
+    title: "Stock Market Forecasting",
+    authors: "",
+    bullets: [
+      "Designed and experimented with multiple machine learning models for time series forecasting.",
+      "Developed preprocessing and feature engineering strategies to improve model accuracy.",
+      "Produced initial LSTM-based notebooks demonstrating stock price prediction and 30-day forecasts.",
+    ],
+    link: "/projects/stock-forecast",
+    imageID: "stock-forecast/forecast.png",
+    imageD: "Sample analysis output",
+  },
+  {
+    section: "Industry",
+    title: "Sales-Sense: Sales data analysis",
+    authors: "",
+    bullets: [
+      "Retrived and analyzed sales data to extract key insights.",
+      "Developed FastAPI endpoints for analytics visualization.",
+      "Integrated Mapbox for location-based tracking.",
+    ],
+    link: "/projects/sales-sense",
+    imageID: "sales-sense/salesarea1.png",
+    imageD: "Sample analysis output",
+  },
+  {
+    section: "Industry",
+    title: "Shopap: Multi-Theme E-Commerce",
+    authors: "",
+    bullets: [
+      "It is built with Next.Js and Monorepo",
+      "Built two different interface using shared state management code",
+      "It made faster customize Shopapp webside changing only layout components according to client interest",
+    ],
+    link: "/projects/shopapp",
+    imageID: "shopapp/monorepo.png",
+    imageD: "Overall Architecture of ShopApp",
   },
 ];
 
@@ -125,8 +190,8 @@ export default function ProjectsPage() {
 
   return (
     <div className="max-w-4xl mx-auto py-10 px-6">
-      {renderSection("Academic", Academic)}
       {renderSection("Industry", Industry)}
+      {renderSection("Academic", Academic)}
       {renderSection("Personal", Personal)}
     </div>
   );

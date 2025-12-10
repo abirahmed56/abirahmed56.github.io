@@ -30,15 +30,6 @@ export default function MobileSidebar() {
           ${open ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        {/* Close Button */}
-        <div className="absolute top-4 right-4">
-          <button
-            onClick={() => setOpen(false)}
-            className="text-gray-800 p-2 rounded-md hover:bg-gray-100 transition-colors"
-          >
-            <FaTimes size={24} />
-          </button>
-        </div>
 
         {/* Profile */}
         <div className="w-32 h-32 relative rounded-full overflow-hidden border-4 border-gray-300 shadow-lg mb-4">
