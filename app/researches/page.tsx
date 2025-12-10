@@ -22,15 +22,28 @@ const researches: Research[] = [
   {
     section: "Submitted",
     title: "DCT-GAN: A Diversity-Controlled Training Strategy for High-Diversity Brain Tumor MRI Synthesis",
-    authors: "Abir Ahmed, Sonjoy Saha",
+    authors: "Abir Ahmed, Sonjoy Prosad Shaha",
     bullets: [
       "DCT-GAN improves GAN training by maintaining balanced diversity using a simple feature-based controller",
       "Uses DINOv2 features to prevent mode collapse without adding extra networks",
       "Produces fast, high-quality, and diverse MRI images from limited data",
     ],
     link: "/researches/dct-gan",
-    imageID: "datc.png",
+    imageID: "dct-gan/datc.png",
     imageD: "Overall workflow of DCT-GAN",
+  },
+  {
+    section: "Submitted",
+    title: "Optimizing a Vision Transformer Model for Blood Cancer Detection from Peripheral Smear Images through Ablation Study",
+    authors: "Sonjoy Prosad Shaha, Amatul Bushra Akhi, Abir Ahmed, Farzana Akter, Rubel Sheikh, Naznin Sultana",
+    bullets: [
+      "DCT-GAN improves GAN training by maintaining balanced diversity using a simple feature-based controller",
+      "Uses DINOv2 features to prevent mode collapse without adding extra networks",
+      "Produces fast, high-quality, and diverse MRI images from limited data",
+    ],
+    link: "/researches/vits",
+    imageID: "vits/workflow.png",
+    imageD: "Overall workflow of Diff-AS",
   },
   {
     section: "Submitted",
@@ -41,7 +54,7 @@ const researches: Research[] = [
       "Uses DINOv2 features to prevent mode collapse without adding extra networks",
       "Produces fast, high-quality, and diverse MRI images from limited data",
     ],
-    link: "/researches/dct-gan",
+    link: "/researches/dct-gn",
     imageID: "Diff-AS-method.png",
     imageD: "Overall workflow of Diff-AS",
   },
@@ -67,8 +80,8 @@ const researches: Research[] = [
       "Introduces an ensemble-based approach to achieve state-of-the-art voice cloning using limited data.",
       "Achieves performance comparable to SOTA models trained on larger datasets.",
     ],
-    link: "researches/a-to-a",
-    imageID: "",
+    link: "researches/atoa",
+    imageID: "atoa/atoa-diagram.png",
     imageD: "Proposed architecture for Audio-to-Audio",
   },
   {
@@ -81,7 +94,7 @@ const researches: Research[] = [
       "Achieves performance comparable to state-of-the-art models.",
     ],
     link: "/researches/zs-vcl",
-    imageID: "zs-vcl.jpeg",
+    imageID: "zs-vcl/Proposed.jpeg",
   },
   {
     section: "Published",
@@ -92,8 +105,8 @@ const researches: Research[] = [
       "Enhances detail preservation in HER2 Breast Cancer imaging.",
       "Stable Diffusion pipeline optimized for medical imaging tasks.",
     ],
-    link: "/researches/Percept-Diff",
-    imageID: "stable-diffusion/sdm-proposed.png",
+    link: "/researches/percept-diff",
+    imageID: "stable-diffusion/method.png",
   },
 ];
 

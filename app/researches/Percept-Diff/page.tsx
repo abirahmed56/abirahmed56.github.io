@@ -1,91 +1,90 @@
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function SagaSRPage() {
-    return (
-        <div className="flex flex-col items-center px-6 py-10 max-w-5xl mx-auto">
+const PerceptDiffBlog = () => {
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-4">
+        Percept-Diff: High-Fidelity IHC Image Generation for HER2 Breast Cancer
+      </h1>
 
-            {/* Title */}
-            <h1 className="text-3xl font-bold text-center mb-2">
-                Percept-Diff: Innovations in Stable Diffusion for High-Fidelity IHC Image Generation in HER2 Breast Cancer Incorporating Perceptual Loss
-            </h1>
+      <p className="mb-6 text-lg">
+        Breast cancer, particularly the HER2-positive variant, is one of the most aggressive forms of cancer. Early detection is crucial, but standard testing methods are often expensive and inaccessible. <strong>Percept-Diff</strong> offers a deep-learning-based solution that generates high-fidelity Immunohistochemical (IHC) images, preserving patient privacy while augmenting scarce medical datasets.
+      </p>
 
-            {/* Authors */}
-            <p className="text-center text-gray-700 mb-1">
-                Md Naimur Asif Borno<sup>1</sup>,
-                Md Tanvir Raihan<sup>2</sup>,
-                Abir Ahmed<sup>3</sup>,
-                Md Sakib Hossain Shovon<sup>4</sup>,
-                Jungpil Shin<sup>5</sup>,
-                MF Mridha<sup>6</sup>
-            </p>
+      <h2 className="text-2xl font-semibold mb-3">Motivation</h2>
+      <p className="mb-6">
+        Deep learning models for medical imaging require large datasets, which are often limited due to patient privacy concerns. Percept-Diff leverages Stable Diffusion models to synthetically generate realistic IHC images for HER2-positive breast cancer at different stages (0+, 1+, 3+), enabling research and training of diagnostic models without exposing sensitive data.
+      </p>
 
-            {/* Affiliations */}
-            {/* <p className="text-center text-gray-600 mb-6">
-        <sup>1,2</sup>Department of Software Engineering, <br />
-        <sup>3,4</sup>Department of Computer Science & Engineering, <br />
-        <sup>1,2,4</sup>Shahjalal University of Science & Technology, Sylhet, Bangladesh <br />
-        <sup>3</sup>Sylhet Engineering College, Sylhet, Bangladesh
-      </p> */}
+      <h2 className="text-2xl font-semibold mb-3">Proposed Method: Percept-Diff</h2>
+      <p className="mb-4">
+        Percept-Diff combines Stable Diffusion with perceptual loss using a pre-trained VGG19 network. L1 loss, instance loss, and prior loss are incorporated to reduce noise and improve image quality. The diffusion process is performed in latent space via variational autoencoders (VAE) with KL divergence.
+      </p>
+      <Image
+        src="/percept-diff/method.png"
+        alt="Percept-Diff Architecture"
+        width={800}
+        height={500}
+        className="mb-6 rounded-lg shadow-md"
+      />
 
-            {/* Buttons */}
-            {/* <div className="flex gap-4 mb-10">
-        <button className="px-4 py-2 border rounded-full">Contact</button>
-        <button className="px-4 py-2 border rounded-full">arXiv Paper</button>
-        <button className="px-4 py-2 border rounded-full">Code</button>
-      </div> */}
+      <h2 className="text-2xl font-semibold mb-3">Performance Evaluation</h2>
+      <p className="mb-4">
+        Three key metrics were used to evaluate the generated images:
+      </p>
+      <ul className="list-disc list-inside mb-6">
+        <li><strong>CLIP Score:</strong> Measures alignment between images and text prompts.</li>
+        <li><strong>FID (Frechet Inception Distance):</strong> Evaluates similarity of generated images to real images; lower is better.</li>
+        <li><strong>KID (Kernel Inception Distance):</strong> A robust metric similar to FID, especially with small datasets.</li>
+      </ul>
 
-            {/* Abstract Section */}
-            <h2 className="text-2xl font-semibold mb-3">Abstract</h2>
-            <p className="text-gray-700 leading-relaxed mb-8">
-                Breast cancer(BrCa) has emerged as a concerning disease in recent years, with its incidence expected to rise in the future. The Human-Epidermal-Growth-Factor-Receptor2(HER2) variant is the most dangerous variant. To save women from this catastrophe, they need to undergo treatment in the early stages but existing tests are too expensive for most people to afford. The positive news is that deep-learning (DL) models are becoming alternatives in this case and with proper data, many other facilities can be provided in this sector. However, DL models require a substantial amount of data, which could potentially compromise patient privacy in this context. Additionally, there is a scarcity of data in this field. To address this issue while respecting patient privacy, we developed a generative solution using Stable Diffusion (StDi) models called Percept-Diff, which conditionally generates realistic IHC images for three stages of HER2-positive breast cancer (BrCa). We used 2435 unique IHC images from the BCI dataset. Images were classified into three classes (0+, 1+, and 3+). Here 0 and 1+ denote HER2-negative whereas 3+ denotes HER2-positive. We attempted to generate the mentioned 3 stages conditionally with different pre-trained diffusion model stabilityai/stable-diffusion-2-base, stabilityai/stable-diffusion-2, CompVis/stable-diffusion-vl-4, and runwaym/stable-diffusion-vl-5, stablediffusionapi/realistic-vision-v51 and stablediffusionapi/anything-v5. Percept-Diff demonstrated promising results, achieving a CLIP score of 35, an FID score of 230, and a KID mean of 0.0101 with a standard deviation of 0.0087. These metrics indicate that Percept-Diff outperformed the above mentioned state-of-the-art diffusion models. This can be a game changer for researchers and open different areas that are not possible now because of data scarcity and can save many women's lives.
-            </p>
+      <h2 className="text-2xl font-semibold mb-3">Results</h2>
+      <table className="w-full mb-6 border border-gray-300 text-left">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="border px-4 py-2">Model</th>
+            <th className="border px-4 py-2">CLIP Score</th>
+            <th className="border px-4 py-2">FID</th>
+            <th className="border px-4 py-2">KID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td className="border px-4 py-2">Stable Diffusion-2</td><td className="border px-4 py-2">25.41</td><td className="border px-4 py-2">330.62</td><td className="border px-4 py-2">0.0022</td></tr>
+          <tr><td className="border px-4 py-2">Stable Diffusion-2-base</td><td className="border px-4 py-2">25.44</td><td className="border px-4 py-2">313.23</td><td className="border px-4 py-2">0.0009</td></tr>
+          <tr><td className="border px-4 py-2">Realistic Vision-V51 (fine-tuned)</td><td className="border px-4 py-2">31</td><td className="border px-4 py-2">239</td><td className="border px-4 py-2">0.0099</td></tr>
+          <tr className="font-bold"><td className="border px-4 py-2">Percept-Diff</td><td className="border px-4 py-2">35</td><td className="border px-4 py-2">230</td><td className="border px-4 py-2">0.0101</td></tr>
+        </tbody>
+      </table>
 
-            {/* Diagram Example */}
-            <div className="w-full mb-8">
-                <Image
-                    src="/stable-diffusion/proposed.png" // replace with your actual diagram path
-                    width={900}
-                    height={600}
-                    alt="Model Diagram"
-                    className="rounded-lg shadow"
-                />
-                <p className="text-center text-sm text-gray-600 mt-2">
-                    Fig. 3. Proposed Architecture
-                </p>
-            </div>
+      <h2 className="text-2xl font-semibold mb-3">Sample Outputs</h2>
+      <p className="mb-4">Here are some sample IHC images generated by Percept-Diff:</p>
+      <Image
+        src="/percept-diff/sample-output.png"
+        alt="Sample Generated IHC Images"
+        width={800}
+        height={500}
+        className="mb-6 rounded-lg shadow-md"
+      />
 
-            <div className="w-full mb-8">
-                <Image
-                    src="/stable-diffusion/comparison.png" // replace with your actual diagram path
-                    width={700}
-                    height={300}
-                    alt="Model Comparison"
-                    className="rounded-lg shadow"
-                />
-                <p className="text-center text-sm text-gray-600 mt-2">
-                    Fig. 2. Model Comparison
-                </p>
-            </div>
+      <h2 className="text-2xl font-semibold mb-3">Conclusion</h2>
+      <p className="mb-6">
+        Percept-Diff generates high-fidelity IHC images for HER2-positive breast cancer with minimal real data, preserving patient privacy. This method outperforms other state-of-the-art diffusion models and can help researchers overcome data scarcity while contributing to early detection and treatment of breast cancer.
+      </p>
 
-            {/* Audio Tables Placeholder
-      <h2 className="text-xl font-semibold mb-4">Audio Comparisons</h2>
-      <p className="text-gray-700 mb-6">
-        (You can add your spectrogram table and audio clips here later.)
-      </p> */}
+      <p className="mb-6">
+        For full technical details, see the complete paper:{" "}
+        <Link
+          href="https://ieeexplore.ieee.org/document/10824425"
+          target="_blank"
+          className="text-blue-600 underline"
+        >
+          Full Paper on IEEE Xplore
+        </Link>
+      </p>
+    </div>
+  );
+};
 
-            {/* References */}
-            {/* <h2 className="text-xl font-semibold mt-10 mb-4">References</h2>
-      <ul className="text-gray-700 list-disc pl-6">
-        <li className="mb-2">
-          H. Lu, K. Chen, Q. Tian, W. Wang, and M. D. Plumbley,
-          “Audiosr: Versatile audio super-resolution at scale,” in ICASSP,
-          pp. 1076–1080, IEEE, 2024.
-        </li>
-        <li className="mb-2">
-          J. Im and J. Nam, “Flashsr: One-step versatile audio super-resolution
-          via diffusion distillation,” in ICASSP. IEEE, 2025, pp. 1–5.
-        </li>
-      </ul> */}
-        </div>
-    );
-}
+export default PerceptDiffBlog;
