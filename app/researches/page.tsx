@@ -67,7 +67,7 @@ const researches: Research[] = [
       "Introduces an ensemble-based approach to achieve state-of-the-art voice cloning using limited data.",
       "Achieves performance comparable to SOTA models trained on larger datasets.",
     ],
-    link: "researches/a-to-a",
+    link: "researches/vcl-es",
     imageID: "",
     imageD: "Proposed architecture for Audio-to-Audio",
   },
