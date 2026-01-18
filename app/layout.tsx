@@ -44,12 +44,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <FaGoogle /> Google Scholar
               </Link>
               <Link
-                href="#"
-                className="flex items-center gap-2 text-blue-600 hover:underline"
-              >
-                <FaTwitter /> Twitter
-              </Link>
-              <Link
                 href="https://www.linkedin.com/in/abirahmed6/"
                 className="flex items-center gap-2 text-blue-600 hover:underline"
               >
@@ -61,12 +55,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               >
                 <FaGithub /> GitHub
               </Link>
-              <Link
+              {/* <Link
                 href="#"
                 className="flex items-center gap-2 text-blue-600 hover:underline"
               >
                 <FaYoutube /> YouTube
-              </Link>
+              </Link> */}
             </div>
           </aside>
 

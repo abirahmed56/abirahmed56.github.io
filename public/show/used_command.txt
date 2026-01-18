@@ -1,0 +1,104 @@
+--- building menifist ---
+python examples/wav2vec/wav2vec_manifest.py C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data\TGT_AUDIO\train `
+   --dest C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data\TGT_AUDIO\train `
+   --ext wav `
+   --valid-percent 0
+
+
+
+--- prepare discreate unit ---
+python -m examples.textless_nlp.gslm.speech2unit.clustering.quantize_with_kmeans `
+  --feature_type hubert `
+  --kmeans_model_path C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\pretrained_models\mhubert_base_L11_km1000.bin `
+  --acoustic_model_path C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\pretrained_models\mhubert_base.pt `
+  --layer 11 `
+  --manifest_path "C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data\TGT_AUDIO\train\train.tsv" `
+  --out_quantized_file_path "C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data\TGT_AUDIO\train.txt" `
+  --extension ".wav"
+
+
+
+--- create data_root --- 
+python -m examples.speech_to_speech.preprocessing.prep_s2ut_data `
+  --source-dir C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data\SRC_AUDIO `
+  --target-dir C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data\TGT_AUDIO `
+  --data-split train dev test `
+  --output-root C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data_root `
+  --vocoder-checkpoint C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\pretrained_models\g_00500000 `
+  --vocoder-cfg C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\pretrained_models\config.json
+
+
+
+--- training command ---
+fairseq-train C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data_root `
+  --config-yaml C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data_root\config.yaml `
+  --multitask-config-yaml C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data_root\config_multitask.yaml `
+  --task speech_to_speech `
+  --target-is-code `
+  --target-code-size 1000 `
+  --vocoder code_hifigan `
+  --criterion speech_to_unit `
+  --label-smoothing 0.2 `
+  --arch s2ut_transformer_fisher `
+  --share-decoder-input-output-embed `
+  --dropout 0.1 `
+  --attention-dropout 0.1 `
+  --relu-dropout 0.1 `
+  --train-subset train `
+  --valid-subset dev `
+  --save-dir C:\Users\USER\Documents\Naim\S2S\training\ctc\checkpoints\training_1 `
+  --lr 0.0005 `
+  --lr-scheduler inverse_sqrt `
+  --warmup-init-lr 1e-7 `
+  --warmup-updates 10000 `
+  --optimizer adam `
+  --adam-betas "(0.9,0.98)" `
+  --clip-norm 10.0 `
+  --max-update 400000 `
+  --max-tokens 10000 `
+  --max-target-positions 3000 `
+  --update-freq 1 `
+  --seed 1 `
+  --num-workers 8 `
+  --max-epoch 300
+
+
+
+--- prediction ---
+fairseq-generate C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data_root `
+  --config-yaml C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data_root\config.yaml `
+  --multitask-config-yaml C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\data_root\config_multitask.yaml `
+  --task speech_to_speech --target-is-code --target-code-size 1000 --vocoder code_hifigan `
+  --path C:\Users\USER\Documents\Naim\S2S\training\ctc\checkpoints\training_1\checkpoint_best.pt `
+  --gen-subset test `
+  --max-tokens 50000 `
+  --beam 10 --max-len-a 1 `
+  --skip-invalid-size-inputs-valid-test `
+  --results-path C:\Users\USER\Documents\Naim\S2S\training\ctc\results\training_1
+
+
+--- generate .unit file ---
+input_file = r"C:\Users\USER\Documents\Naim\S2S\training\ctc\results\training_1\generate-test.txt"
+output_file = r"C:\Users\USER\Documents\Naim\S2S\training\ctc\results\training_1\generate-test.unit"
+lines = []
+with open(input_file, "r", encoding="utf-8") as infile:
+    for line in infile:
+        if line.startswith("D-"):
+            parts = line.strip().split("\t")
+            if len(parts) >= 3:
+                idx = int(parts[0][2:])
+                text = parts[2]
+                lines.append((idx, text))
+lines.sort()
+with open(output_file, "w", encoding="utf-8") as outfile:
+    for _, text in lines:
+        outfile.write(text + "\n")
+
+
+--- generate wav ---
+python examples/speech_to_speech/generate_waveform_from_code.py `
+  --in-code-file C:\Users\USER\Documents\Naim\S2S\training\ctc\results\training_1\generate-test.unit `
+  --vocoder "C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\pretrained_models\g_00500000" `
+  --vocoder-cfg "C:\Users\USER\Documents\Naim\S2S\training\ctc\dataset\pretrained_models\config.json" `
+  --results-path C:\Users\USER\Documents\Naim\S2S\training\ctc\results\training_1\wav `
+  --dur-prediction

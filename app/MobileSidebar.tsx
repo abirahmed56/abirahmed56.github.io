@@ -48,17 +48,11 @@ export default function MobileSidebar() {
           <Link href="https://scholar.google.com/citations?user=QR5DvcIAAAAJ&hl=en" className="flex items-center gap-2 text-blue-600 hover:underline">
             <FaGoogle /> Google Scholar
           </Link>
-          <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
-            <FaTwitter /> Twitter
-          </Link>
           <Link href="https://www.linkedin.com/in/abirahmed6/" className="flex items-center gap-2 text-blue-600 hover:underline">
             <FaLinkedin /> LinkedIn
           </Link>
           <Link href="https://github.com/abirahmed56" className="flex items-center gap-2 text-blue-600 hover:underline">
             <FaGithub /> GitHub
-          </Link>
-          <Link href="#" className="flex items-center gap-2 text-blue-600 hover:underline">
-            <FaYoutube /> YouTube
           </Link>
         </div>
       </aside>
