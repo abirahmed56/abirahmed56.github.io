@@ -12,7 +12,7 @@ interface Research {
   date?: string;
   link?: string;
   bullets: string[];
-  section: "Published" | "Running" | "Submitted";
+  section: "Accepted" | "Running" | "Submitted";
   youtubeId?: string;
   imageID?: string;
   imageD?: string;
@@ -46,19 +46,6 @@ const researches: Research[] = [
     imageD: "Overall workflow of Diff-AS",
   },
   {
-    section: "Submitted",
-    title: "Diff-AS: Diffusion-Augmented Strategy for Chrysanthemum Leaf Classification",
-    authors: "Abir Ahmed, Sonjoy Saha",
-    bullets: [
-      "DCT-GAN improves GAN training by maintaining balanced diversity using a simple feature-based controller",
-      "Uses DINOv2 features to prevent mode collapse without adding extra networks",
-      "Produces fast, high-quality, and diverse MRI images from limited data",
-    ],
-    link: "/researches/dct-gn",
-    imageID: "Diff-AS-method.png",
-    imageD: "Overall workflow of Diff-AS",
-  },
-  {
     section: "Running",
     title: "Emotion-Aware Zero-Shot Voice Synthesis for Low-Resource Scenarios",
     authors: "Abir Ahmed, M. Shahidur Rahman",
@@ -73,11 +60,11 @@ const researches: Research[] = [
   },
   {
     section: "Running",
-    title: "Audio to Audio translation preserving Speaker identity",
+    title: "Audio to Audio translation preserving and transfering Speaker identity in zero-shot setting",
     authors: "Abir Ahmed, M. Shahidur Rahman",
     bullets: [
-      "A text-to-speech model with zero-shot voice-cloning capability for Bangla.",
-      "Introduces an ensemble-based approach to achieve state-of-the-art voice cloning using limited data.",
+      "An end to end audio to audio translation model that can preserve and transfer speaker identity in zero-shot setting.",
+      "Used pretrained models to bipass the need for large dataset and achieve state-of-the-art performance.",
       "Achieves performance comparable to SOTA models trained on larger datasets.",
     ],
     link: "researches/atoa",
@@ -85,7 +72,7 @@ const researches: Research[] = [
     imageD: "Proposed architecture for Audio-to-Audio",
   },
   {
-    section: "Published",
+    section: "Accepted",
     title: "Efficient Zero-Shot Voice Cloning for Bengali Speech Synthesis",
     authors: "Abir Ahmed, Prapti Roy, Durjoy Chandra Paul, and M. Shahidur Rahman",
     bullets: [
@@ -97,7 +84,19 @@ const researches: Research[] = [
     imageID: "zs-vcl/Proposed.jpeg",
   },
   {
-    section: "Published",
+    section: "Accepted",
+    title: "Diff-AS: Diffusion-Augmented Strategy for Chrysanthemum Leaf Classification",
+    authors: "Sonjoy Prosad Shaha, Abir Ahmed, Md Hasan Ahmad, Amatul Bushra Akhi, Mahmudul Hasan Badhan, Md. Atiqur Rahman",
+    bullets: [
+      "Applied DreamBooth fine-tuning on Stable Diffusion using 400 images per class to mitigate overfitting.",
+      "Combined synthesized and imbalanced datasets to create a balanced dataset, and applied transfer learning to develop a classifier",
+    ],
+    link: "/researches/dct-gn",
+    imageID: "Diff-AS-method.png",
+    imageD: "Overall workflow of Diff-AS",
+  },
+  {
+    section: "Accepted",
     title: "Percept-Diff: Innovations in Stable Diffusion for High-Fidelity IHC Image Generation",
     authors: "Md Naimur Asif Borno, Md Tanvir Raihan, Abir Ahmed, Md Sakib Hossain Shovon, Jungpil Shin, MF Mridha",
     bullets: [
@@ -113,7 +112,7 @@ const researches: Research[] = [
 export default function ProjectsPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const Published = researches.filter((p) => p.section === "Published");
+  const Published = researches.filter((p) => p.section === "Accepted");
   const Submitted = researches.filter((p) => p.section === "Submitted");
   const Running = researches.filter((p) => p.section === "Running");
 
@@ -202,7 +201,7 @@ export default function ProjectsPage() {
   return (
     <div className="max-w-4xl mx-auto py-10 px-6">
       {renderSection("Running", Running)}
-      {renderSection("Published", Published)}
+      {renderSection("Accepted", Published)}
       {renderSection("Under Submission", Submitted)}
     </div>
   );
